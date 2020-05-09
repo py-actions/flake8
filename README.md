@@ -5,7 +5,7 @@
 [![Windows CI](https://github.com/py-actions/flake8/workflows/Windows%20CI/badge.svg)](https://github.com/py-actions/flake8/actions?query=workflow%3A%22Windows+CI%22)
 [![Lint](https://github.com/py-actions/flake8/workflows/Lint/badge.svg)](https://github.com/py-actions/flake8/actions?query=workflow%3ALint)
 
-This GitHub Action installs the Python [flake8 package](https://pypi.org/project/flake8/) and executes flake8 stylistic and logical linting of Python source files.  flake8 installation and execution defaults can be configured with optional Action settings.
+This GitHub Action installs the Python [flake8 package](https://pypi.org/project/flake8/) in  an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files.  flake8 installation and execution defaults can be configured with optional Action settings.
 
 ## Quick Start
 
