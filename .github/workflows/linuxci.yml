@@ -19,4 +19,4 @@ jobs:
       - name: Python environment report
         run: python -c "import sys; print(sys.version)"
       - name: Run ${{ matrix.python-version }} platform tests
-        uses: format('py-actions/flake8@{0}', ${{ github.sha }})
+        uses: py-actions/flake8@master
