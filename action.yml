@@ -1,4 +1,4 @@
-name: "Python flake8 Source Lint"
+name: "Python flake8 Lint"
 description: "Logical and stylistic linting of Python source files with the flake8 package"
 inputs:
   path: # id
