@@ -1,0 +1,22 @@
+name: macOS CI
+
+on: [push, pull_request]
+
+jobs:
+  test-action:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, pypy3]
+    name: macOS CI
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }} environment
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Python environment report
+        run: python -c "import sys; print(sys.version)"
+      - name: Run ${{ matrix.python-version }} platform tests
+        uses: py-actions/flake8@${{ github.sha }} # installs test action at pushed commit
