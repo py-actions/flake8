@@ -2,7 +2,7 @@ name: "Python flake8 Source Lint"
 description: "Logical and stylistic linting of Python source files with the flake8 package"
 inputs:
   path: # id
-    description: "Path to source directory (default='.')"
+    description: "Path to source file or directory (default='.')"
     required: false
     default: "." # default path is the root of the source repository
   update-pip: # id
