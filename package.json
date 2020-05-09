@@ -1,7 +1,7 @@
 {
   "name": "flake8",
   "version": "1.0.0",
-  "description": "py-actions Python flake8 source linting GitHub Action",
+  "description": "py-actions Python flake8 linting GitHub Action",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src/*.js",
