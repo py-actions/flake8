@@ -1,0 +1,11 @@
+extends:
+  - wesbos
+
+parser: "babel-eslint"
+
+rules:
+  no-console:
+    - off
+  quotes: 0
+  prettier/prettier:
+    - singleQuote: false
