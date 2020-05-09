@@ -1,4 +1,4 @@
-name: JS Lint
+name: Lint
 
 on: [push, pull_request]
 
@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         node: ["12"]
-    name: Node ${{ matrix.node }} environment eslint linting
+    name: Node ${{ matrix.node }} eslint run
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
