@@ -40,19 +40,19 @@ async function run() {
     // prep flake8 command for execution
     let flake8Cmd = "flake8";
     if (ignoreRuleCodes != "none") {
-      flake8Cmd = flake8Cmd + ` --ignore ${ignoreRuleCodes}`;
+      flake8Cmd += ` --ignore ${ignoreRuleCodes}`;
     }
     if (excludePaths != "none") {
-      flake8Cmd = flake8Cmd + ` --exclude ${excludePaths}`;
+      flake8Cmd += ` --exclude ${excludePaths}`;
     }
     if (maxLineLength != "none") {
-      flake8Cmd = flake8Cmd + ` --max-line-length ${maxLineLength}`;
+      flake8Cmd += ` --max-line-length ${maxLineLength}`;
     }
     if (flake8Args != "none") {
-      flake8Cmd = flake8Cmd + ` ${flake8Args}`;
+      flake8Cmd += ` ${flake8Args}`;
     }
     // concatenate test path
-    flake8Cmd = flake8Cmd + ` ${sourcePath}`;
+    flake8Cmd += ` ${sourcePath}`;
 
     // execute flake8
     await exec.exec(`${flake8Cmd}`);
