@@ -3,7 +3,7 @@ name: macOS CI
 on: [push, pull_request]
 
 jobs:
-  test-action:
+  ci-tests:
     runs-on: macos-latest
     strategy:
       matrix:
