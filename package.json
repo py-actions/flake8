@@ -2,12 +2,12 @@
   "name": "flake8",
   "version": "1.0.0",
   "description": "py-actions Python flake8 source linting GitHub Action",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "lint": "eslint index.js",
-    "lint:fix": "eslint index.js --fix",
-    "package": "ncc build index.js -o dist",
-    "test": "eslint index.js && jest"
+    "lint": "eslint src/*.js",
+    "lint:fix": "eslint src/*.js --fix",
+    "package": "ncc build src/index.js -o dist",
+    "test": "eslint src/*.js && jest"
   },
   "repository": {
     "type": "git",
