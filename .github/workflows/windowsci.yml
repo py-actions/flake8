@@ -19,4 +19,4 @@ jobs:
       - name: Python environment report
         run: python -c "import sys; print(sys.version)"
       - name: Run ${{ matrix.python-version }} platform tests
-        uses: py-actions/flake8@${{ github.sha }} # installs test action at pushed commit
+        uses: format('py-actions/flake8@{0}', ${{ github.sha }})
