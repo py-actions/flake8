@@ -21,6 +21,10 @@ inputs:
     description: "Integer value representing max acceptable line length (optional)"
     required: false
     default: "none" # integer value as a string
+  args:
+    description: "flake8 arguments for test execution (optional)"
+    required: false
+    default: "none" # integer value as a string
   flake8-version:
     description: "The flake8 version for tests (optional, default='latest')"
     required: false
