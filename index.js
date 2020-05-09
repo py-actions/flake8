@@ -24,7 +24,7 @@ async function run() {
     console.log(`[*] Installing flake8 package @ ${flake8Version}...`);
     if (flake8Version === "latest") {
       await exec.exec("python -m pip install --upgrade flake8");
-    } else if (flake8Version == "master") {
+    } else if (flake8Version === "master") {
       await exec.exec(
         "python -m pip install --upgrade git+https://gitlab.com/pycqa/flake8.git"
       );
@@ -39,16 +39,16 @@ async function run() {
 
     // prep flake8 command for execution
     let flake8Cmd = "flake8";
-    if (ignoreRuleCodes != "none") {
+    if (ignoreRuleCodes !== "none") {
       flake8Cmd += ` --ignore ${ignoreRuleCodes}`;
     }
-    if (excludePaths != "none") {
+    if (excludePaths !== "none") {
       flake8Cmd += ` --exclude ${excludePaths}`;
     }
-    if (maxLineLength != "none") {
+    if (maxLineLength !== "none") {
       flake8Cmd += ` --max-line-length ${maxLineLength}`;
     }
-    if (flake8Args != "none") {
+    if (flake8Args !== "none") {
       flake8Cmd += ` ${flake8Args}`;
     }
     // concatenate test path
