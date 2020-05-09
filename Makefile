@@ -1,4 +1,4 @@
-dist: *.js package*.json
+dist: src/*.js package*.json
 	npm run package
 
 lint:
