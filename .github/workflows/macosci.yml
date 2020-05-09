@@ -18,5 +18,15 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Python environment report
         run: python -c "import sys; print(sys.version)"
-      - name: Run ${{ matrix.python-version }} platform tests
+      - name: Run ${{ matrix.python-version }} platform tests (default)
         uses: py-actions/flake8@master
+      - name: Run ${{ matrix.python-version }} platform tests (with args)
+        uses: py-actions/flake8@master
+        with:
+          update-pip: "true"
+          ignore: "F401"
+          exclude: "tests/test.py"
+          max-line-length: "100"
+          args: "--quiet"
+          path: "tests/test-args.py"
+          flake8-version: "master"
