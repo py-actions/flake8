@@ -1,5 +1,6 @@
 # py-actions/flake8 GitHub Action
 
+![Version](https://img.shields.io/github/v/release/py-actions/flake8?sort=semver)
 [![Linux CI](https://github.com/py-actions/flake8/workflows/Linux%20CI/badge.svg)](https://github.com/py-actions/flake8/actions?query=workflow%3A%22Linux+CI%22)
 [![macOS CI](https://github.com/py-actions/flake8/workflows/macOS%20CI/badge.svg)](https://github.com/py-actions/flake8/actions?query=workflow%3A%22macOS+CI%22)
 [![Windows CI](https://github.com/py-actions/flake8/workflows/Windows%20CI/badge.svg)](https://github.com/py-actions/flake8/actions?query=workflow%3A%22Windows+CI%22)
