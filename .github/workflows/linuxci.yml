@@ -1,6 +1,10 @@
 name: Linux CI
 
-on: [push, pull_request]
+on:
+  schedule:
+    - cron: "0 6 * * * *"
+  push:
+  pull_request:
 
 jobs:
   ci-tests:
