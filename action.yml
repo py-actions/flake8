@@ -7,19 +7,19 @@ inputs:
     description: "Path to source file or directory (default='.')"
     required: false
     default: "." # default path is the root of the source repository
-  update-pip: # id
+  update_pip: # id
     description: "Boolean for pip upgrade prior to flake8 installation (default='false')"
     required: false
     default: "false" # options "true", "false"
-  install-deps:
+  install_deps:
     description: "Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt)"
     required: false
     default: "false" # options "true", "false"
-  dev-install:
+  dev_install:
     description: "Install the project in editable mode (i.e.  setuptools 'develop mode')"
     required: false
     default: "false" # options "true", "false"
-  req-file-path:
+  req_file_path:
     description: "Requirements file path."
     required: false
     default: "none" # any string is valid
@@ -31,7 +31,7 @@ inputs:
     description: "Comma delimited list of excluded paths (optional)"
     required: false
     default: "none" # comma delimited list of paths
-  max-line-length:
+  max_line_length:
     description: "Integer value representing max acceptable line length (optional)"
     required: false
     default: "none" # integer value as a string
@@ -39,11 +39,11 @@ inputs:
     description: "flake8 arguments for test execution (optional)"
     required: false
     default: "none" # integer value as a string
-  flake8-version:
+  flake8_version:
     description: "The flake8 version for tests (optional, default='latest')"
     required: false
     default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
-  github-token:
+  github_token:
     description: The automatically created secret github action token (supply as '${{ secrets.GITHUB_TOKEN }}'').
     required: true
   level:

@@ -29,10 +29,10 @@ jobs:
       - name: Run ${{ matrix.python-version }} platform tests (with args)
         uses: py-actions/flake8@master
         with:
-          update-pip: "true"
+          update_pip: "true"
           ignore: "F401"
           exclude: "tests/test.py"
-          max-line-length: "100"
+          max_line_length: "100"
           args: "--quiet"
           path: "tests/test-args.py"
-          flake8-version: "master"
+          flake8_version: "master"

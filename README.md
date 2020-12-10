@@ -31,7 +31,7 @@ jobs:
       - name: flake8 Lint
         uses: reviewdog/flake8@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### With non-default settings
@@ -55,12 +55,12 @@ jobs:
       - name: flake8 Lint
         uses: reviewdog/action-flake8@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check # Change reporter. (Only `github-pr-check` is supported at the moment).
           level: warning
           ignore: "F401"
           exclude: "src/ignoreme.py"
-          max-line-length: "100"
+          max_line_length: "100"
           path: "src"
 ```
 
@@ -72,25 +72,25 @@ Configure the Action with the following _optional_ settings:
 
 ### Pip options
 
-#### `update-pip`
+#### `update_pip`
 
 **Optional** Update `pip` before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
 
-#### `install-deps`
+#### `install_deps`
 
 **Optional** Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt) before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
 
-#### `dev-install`
+#### `dev_install`
 
 **Optional** Install the project in editable `-e` mode (i.e.  setuptools 'develop mode'). Options: [`"true"`, `"false"`]. Default = `"false"`.
 
-#### `req-file-path`
+#### `req_file_path`
 
 **Optional** Path pointing to the requirements file. Default = `"./requirements.txt"`.
 
 ### Flake8 options
 
-#### `flake8-version`
+#### `flake8_version`
 
 **Optional** flake8 version for testing. Options: \['latest', 'master', '[VERSION NUMBER]'].Default = `"latest"`.
 
@@ -118,13 +118,13 @@ See the inputs below for additional details.
 
 **Optional** Comma-delimited list of ignored flake8 rule codes. Default = flake8 default.
 
-#### `max-line-length`
+#### `max_line_length`
 
 **Optional** Integer value (as string) representing maximum acceptable line length. Default = flake8 default.
 
 ### Reviewdog options
 
-#### `github-token`
+#### `github_token`
 
 **Required** The automatically created secret github action token (supply as '${{ secrets.GITHUB_TOKEN }}'').
 
@@ -143,6 +143,40 @@ See the inputs below for additional details.
 ## Outputs
 
 None
+
+## Development
+
+### Release
+
+#### [haya14busa/action-bumpr](https://github.com/haya14busa/action-bumpr)
+
+You can bump version on merging Pull Requests with specific labels (bump:major,bump:minor,bump:patch).
+Pushing tag manually by yourself also work.
+
+#### [haya14busa/action-update-semver](https://github.com/haya14busa/action-update-semver)
+
+This action updates major/minor release tags on a tag push. e.g. Update v1 and v1.2 tag when released v1.2.3.
+ref: <https://help.github.com/en/articles/about-actions#versioning-your-action>
+
+### Lint - reviewdog integration
+
+This reviewdog action template itself is integrated with reviewdog to run lints
+which is useful for Docker container based actions.
+
+![reviewdog integration](https://user-images.githubusercontent.com/3797062/72735107-7fbb9600-3bde-11ea-8087-12af76e7ee6f.png)
+
+Supported linters:
+
+-   [reviewdog/action-shellcheck](https://github.com/reviewdog/action-shellcheck)
+-   [reviewdog/action-hadolint](https://github.com/reviewdog/action-hadolint)
+-   [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
+
+### Dependencies Update Automation
+
+This repository uses [haya14busa/action-depup](https://github.com/haya14busa/action-depup) to update
+reviewdog version.
+
+[![reviewdog depup demo](https://user-images.githubusercontent.com/3797062/73154254-170e7500-411a-11ea-8211-912e9de7c936.png)](https://github.com/reviewdog/action-template/pull/6)
 
 ## Acknowledgement
 

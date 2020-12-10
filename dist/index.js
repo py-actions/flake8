@@ -1599,17 +1599,17 @@ const fs = __webpack_require__(747);
 
 async function run() {
   const sourcePath = core.getInput("path");
-  const updatePip = core.getInput("update-pip");
+  const updatePip = core.getInput("update_pip");
   const ignoreRuleCodes = core.getInput("ignore");
   const excludePaths = core.getInput("exclude");
-  const maxLineLength = core.getInput("max-line-length");
+  const maxLineLength = core.getInput("max_line_length");
   const flake8Args = core.getInput("args");
-  const flake8Version = core.getInput("flake8-version");
-  const installDeps = core.getInput("install-deps");
-  const devInstall = core.getInput("dev-install");
-  const reqFilePath = core.getInput("req-file-path");
+  const flake8Version = core.getInput("flake8_version");
+  const installDeps = core.getInput("install_deps");
+  const devInstall = core.getInput("dev_install");
+  const reqFilePath = core.getInput("req_file_path");
 
-  const githubToken = core.getInput("github-token");
+  const githubToken = core.getInput("github_token");
   const level = core.getInput("level");
   const reporter = core.getInput("reporter");
 
@@ -1682,7 +1682,7 @@ async function run() {
       flake8Cmd += ` --exclude ${excludePaths}`;
     }
     if (maxLineLength !== "none") {
-      flake8Cmd += ` --max-line-length ${maxLineLength}`;
+      flake8Cmd += ` --max_line_length ${maxLineLength}`;
     }
     if (flake8Args !== "none") {
       flake8Cmd += ` ${flake8Args}`;
