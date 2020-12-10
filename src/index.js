@@ -8,13 +8,11 @@ async function run() {
   const excludePaths = core.getInput("exclude");
   const maxLineLength = core.getInput("max-line-length");
   const flake8Args = core.getInput("args");
-  // const flake8Version = core.getInput("flake8-version");
-  const flake8Version = "latest";
+  const flake8Version = core.getInput("flake8-version");
 
   const github_token = core.getInput("github_token");
   const level = core.getInput("level");
-  let reporter = core.getInput("reporter");
-  reporter = "github-pr-review";
+  const reporter = core.getInput("reporter");
 
   // ====================
   // Install dependencies
@@ -27,6 +25,7 @@ async function run() {
     }
 
     // install reviewdog
+    console.log(`[*] Installing reviewdog...`);
     await exec.exec(
       "wget -sfL https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sh -s -- -b /usr/local/bin/"
     );
@@ -66,6 +65,7 @@ async function run() {
     flake8Cmd += ` ${sourcePath}`;
 
     // Export github token
+    console.log(`[*] Setting github api token as env variable...`);
     process.env["REVIEWDOG_GITHUB_API_TOKEN"] = github_token;
 
     // Validate reviewdog input arguments
@@ -80,9 +80,11 @@ async function run() {
     }
 
     // Add reviewdog execution code
+    console.log(`[*] Adding reviewdog command...`);
     flake8Cmd += `| reviewdog -f flake8 -name="flake8-lint" -reporter="${reporter}" -level="${level}" -tee`;
 
     // execute flake8
+    console.log(`[*] Executing flake8 + reviewdog command...`);
     await exec.exec(`${flake8Cmd}`);
   } catch (error) {
     core.setFailed(
