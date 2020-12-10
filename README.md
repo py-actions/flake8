@@ -146,7 +146,7 @@ None
 
 ## Acknowledgement
 
-This github action was based on the flake8 action of [py-actions](https://github.com/py-actions/flake8).
+:rocket: This github action was based on the flake8 action of [py-actions](https://github.com/py-actions/flake8).
 
 ## License
 
