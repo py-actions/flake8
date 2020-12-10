@@ -43,8 +43,8 @@ inputs:
     description: "The flake8 version for tests (optional, default='latest')"
     required: false
     default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
-  github_token:
-    description: 'GITHUB_TOKEN.'
+  github-token:
+    description: The automatically created secret github token (supply as '${{ secrets.GITHUB_TOKEN }}'').
     required: true
   level:
     description: 'Report level for reviewdog [info,warning,error]'

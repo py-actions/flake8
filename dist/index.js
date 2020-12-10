@@ -1609,7 +1609,7 @@ async function run() {
   const devInstall = core.getInput("dev-install");
   const reqFilePath = core.getInput("req-file-path");
 
-  const githubToken = core.getInput("githubToken");
+  const githubToken = core.getInput("github-token");
   const level = core.getInput("level");
   const reporter = core.getInput("reporter");
 
