@@ -6,7 +6,7 @@
 [![Windows CI](https://github.com/rickstaa/action-flake8/workflows/Windows%20CI/badge.svg)](https://github.com/rickstaa/action-flake8/actions?query=workflow%3A%22Windows+CI%22)
 [![Lint](https://github.com/rickstaa/action-flake8/workflows/Lint/badge.svg)](https://github.com/rickstaa/action-flake8/actions?query=workflow%3ALint)
 
-This action runs flak8 with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to lint to lint python source files while creating annotations. It does this by installing the Python [flake8 package](https://pypi.org/project/flake8/) in an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files. Following [reviewdog](https://github.com/reviewdog/reviewdog) is used to parse the bash output into github annotations. Flake8 and reviewdog installation and execution defaults can be configured with optional Action settings.
+This action runs flake8 with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to lint to lint python source files while creating annotations. It does this by installing the Python [flake8 package](https://pypi.org/project/flake8/) in an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files. Following [reviewdog](https://github.com/reviewdog/reviewdog) is used to parse the bash output into github annotations. Flake8 and reviewdog installation and execution defaults can be configured with optional Action settings.
 
 ## Quick Start
 
