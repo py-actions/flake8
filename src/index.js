@@ -2,6 +2,8 @@ const core = require("@actions/core");
 const exec = require("@actions/exec");
 const fs = require("fs");
 
+const REVIEWDOG_VERSION = "v0.1.0"; // Current version of reviewdog
+
 async function run() {
   const sourcePath = core.getInput("path");
   const updatePip = core.getInput("update_pip");
@@ -31,7 +33,7 @@ async function run() {
     // install Reviewdog (nightly)
     console.log(`[*] Installing reviewdog...`);
     await exec.exec(
-      `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/`
+      `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ [${REVIEWDOG_VERSION}]`
     ); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/346
 
     // install dependencies if user requested this

@@ -1,5 +1,5 @@
 {
-  "name": "flake8",
+  "name": "action-flake8",
   "version": "1.1.0",
   "description": "Python flake8 linting and Reviewdog annotation GitHub Action",
   "main": "src/index.js",
