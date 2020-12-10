@@ -31,7 +31,7 @@ jobs:
       - name: flake8 Lint
         uses: rickstaa/flake8@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### With non-default settings
@@ -55,7 +55,7 @@ jobs:
       - name: flake8 Lint
         uses: rickstaa/action-flake8@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check # Change reporter. (Only `github-pr-check` is supported at the moment).
           level: warning
           ignore: "F401"
@@ -124,7 +124,7 @@ See the inputs below for additional details.
 
 ### Reviewdog options
 
-#### `github_token`
+#### `github-token`
 
 **Required** Your github action token.
 
