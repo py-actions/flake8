@@ -44,7 +44,7 @@ inputs:
     required: false
     default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
   github-token:
-    description: The automatically created secret github token (supply as '${{ secrets.GITHUB_TOKEN }}'').
+    description: The automatically created secret github action token (supply as '${{ secrets.GITHUB_TOKEN }}'').
     required: true
   level:
     description: 'Report level for reviewdog [info,warning,error]'

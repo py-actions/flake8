@@ -126,7 +126,7 @@ See the inputs below for additional details.
 
 #### `github-token`
 
-**Required** Your github action token.
+**Required** The automatically created secret github action token (supply as '${{ secrets.GITHUB_TOKEN }}'').
 
 #### `level`
 
