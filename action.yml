@@ -1,6 +1,6 @@
 
 name: "Run flake8 with reviewdog"
-description: "🐶 Run flak8 with reviewdog on pull requests to lint python source files while creating annotations."
+description: "🐶 Run flake8 with reviewdog on pull requests to lint python source files while creating annotations."
 author: Rick Staa
 inputs:
   path: # id
