@@ -1,6 +1,4 @@
 # files to ignore
-package.json
-package-lock.json
 *.code-workspace
 
 # Folders to ignore
