@@ -1619,11 +1619,11 @@ async function run() {
       await exec.exec("python -m pip install --upgrade pip");
     }
 
-    // install reviewdog
+    // install Reviewdog (nightly)
     console.log(`[*] Installing reviewdog...`);
     await exec.exec(
       `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/`
-    );
+    ); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/346
 
     // install/update flake8 package
     console.log(`[*] Installing flake8 package @ ${flake8Version}...`);
@@ -1674,13 +1674,13 @@ async function run() {
       level = "error";
     }
 
-    // Add reviewdog execution code
+    // setup reviewdog execution command
     console.log(`[*] Adding reviewdog command...`);
-    flake8Cmd += `| reviewdog -f flake8 -name="flake8-lint" -reporter="${reporter}" -level="${level}" -tee`;
+    const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporter}" -level="${level}" -tee`;
 
-    // execute flake8
+    // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
-    await exec.exec(`${flake8Cmd}`);
+    await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`);
   } catch (error) {
     core.setFailed(
       `ERROR: Action failed during execution with error: ${error.message}`
