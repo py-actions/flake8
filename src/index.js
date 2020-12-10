@@ -2,7 +2,7 @@ const core = require("@actions/core");
 const exec = require("@actions/exec");
 const fs = require("fs");
 
-const REVIEWDOG_VERSION = "v0.1.0"; // Current version of reviewdog
+const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
 
 async function run() {
   const sourcePath = core.getInput("path");

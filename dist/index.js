@@ -1597,7 +1597,7 @@ const core = __webpack_require__(470);
 const exec = __webpack_require__(986);
 const fs = __webpack_require__(747);
 
-const REVIEWDOG_VERSION = "v0.1.0"; // Current version of reviewdog
+const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
 
 async function run() {
   const sourcePath = core.getInput("path");
