@@ -10,9 +10,9 @@ async function run() {
   const flake8Args = core.getInput("args");
   const flake8Version = core.getInput("flake8-version");
 
-  const github_token = core.getInput("github_token");
-  const level = core.getInput("level");
-  const reporter = core.getInput("reporter");
+  const githubToken = core.getInput("githubToken");
+  let level = core.getInput("level");
+  let reporter = core.getInput("reporter");
 
   // ====================
   // Install dependencies
@@ -66,16 +66,16 @@ async function run() {
 
     // Export github token
     console.log(`[*] Setting github api token as env variable...`);
-    process.env["REVIEWDOG_GITHUB_API_TOKEN"] = github_token;
+    process.env.REVIEWDOG_GITHUB_API_TOKEN = githubToken;
 
     // Validate reviewdog input arguments
     if (reporter === "github-pr-review") {
       throw new Error("github-pr-review unsupported (for now)");
     }
-    if ((reporter === "None") | (reporter === "")) {
+    if (reporter === "None" || reporter === "") {
       reporter = "github-pr-check";
     }
-    if ((level === "None") | (reporter === "")) {
+    if (level === "None" || reporter === "") {
       level = "error";
     }
 
