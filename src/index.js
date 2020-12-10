@@ -8,7 +8,13 @@ async function run() {
   const excludePaths = core.getInput("exclude");
   const maxLineLength = core.getInput("max-line-length");
   const flake8Args = core.getInput("args");
-  const flake8Version = core.getInput("flake8-version");
+  // const flake8Version = core.getInput("flake8-version");
+  const flake8Version = "latest";
+
+  const github_token = core.getInput("github_token");
+  const level = core.getInput("level");
+  let reporter = core.getInput("reporter");
+  reporter = "github-pr-review";
 
   // ====================
   // Install dependencies
@@ -19,6 +25,11 @@ async function run() {
       console.log("[*] Updating pip package...");
       await exec.exec("python -m pip install --upgrade pip");
     }
+
+    // install reviewdog
+    await exec.exec(
+      "wget -sfL https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sh -s -- -b /usr/local/bin/"
+    );
 
     // install/update flake8 package
     console.log(`[*] Installing flake8 package @ ${flake8Version}...`);
@@ -53,6 +64,23 @@ async function run() {
     }
     // concatenate test path
     flake8Cmd += ` ${sourcePath}`;
+
+    // Export github token
+    process.env["REVIEWDOG_GITHUB_API_TOKEN"] = github_token;
+
+    // Validate reviewdog input arguments
+    if (reporter === "github-pr-review") {
+      throw new Error("github-pr-review unsupported (for now)");
+    }
+    if ((reporter === "None") | (reporter === "")) {
+      reporter = "github-pr-check";
+    }
+    if ((level === "None") | (reporter === "")) {
+      level = "error";
+    }
+
+    // Add reviewdog execution code
+    flake8Cmd += `| reviewdog -f flake8 -name="flake8-lint" -reporter="${reporter}" -level="${level}" -tee`;
 
     // execute flake8
     await exec.exec(`${flake8Cmd}`);

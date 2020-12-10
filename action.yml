@@ -1,3 +1,4 @@
+
 name: "Python flake8 Lint"
 description: "Logical and stylistic linting of Python source files with the flake8 package"
 inputs:
@@ -29,6 +30,20 @@ inputs:
     description: "The flake8 version for tests (optional, default='latest')"
     required: false
     default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
+  github_token:
+    description: 'GITHUB_TOKEN.'
+    required: true
+  level:
+    description: 'Report level for reviewdog [info,warning,error]'
+    required: false
+    default: 'error'
+  reporter:
+    description: |
+      Reporter of reviewdog command [github-pr-check,github-pr-review,github-check].
+      Default is github-pr-check.
+      github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+    required: false
+    default: 'github-pr-check'
 
 runs:
   using: "node12"
