@@ -1,10 +1,11 @@
+# MAC is currently not supported.
 name: macOS CI
 
-on:
-  schedule:
-    - cron: "0 6 * * *"
-  push:
-  pull_request:
+# on:
+  # schedule:
+    # - cron: "0 6 * * *"
+  # push:
+  # pull_request:
 
 jobs:
   ci-tests:
