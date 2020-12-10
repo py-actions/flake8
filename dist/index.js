@@ -1622,7 +1622,7 @@ async function run() {
     // install reviewdog
     console.log(`[*] Installing reviewdog...`);
     await exec.exec(
-      `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sh -s -- -b /usr/local/bin/`
+      `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/`
     );
 
     // install/update flake8 package
