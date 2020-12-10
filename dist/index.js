@@ -1682,7 +1682,7 @@ async function run() {
       flake8Cmd += ` --exclude ${excludePaths}`;
     }
     if (maxLineLength !== "none") {
-      flake8Cmd += ` --max_line_length ${maxLineLength}`;
+      flake8Cmd += ` --max-line-length ${maxLineLength}`;
     }
     if (flake8Args !== "none") {
       flake8Cmd += ` ${flake8Args}`;
@@ -1691,8 +1691,8 @@ async function run() {
     flake8Cmd += ` ${sourcePath}`;
 
     // Export github token
-    console.log(`[*] Setting github api token as env variable...`);
-    process.env.REVIEWDOG_GITHUB_API_TOKEN = githubToken;
+    // console.log(`[*] Setting github api token as env variable...`);
+    // process.env.REVIEWDOG_GITHUB_API_TOKEN = githubToken;
 
     // Validate reviewdog input arguments
     let reporterArg = "github-pr-check";
@@ -1712,7 +1712,9 @@ async function run() {
 
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
-    await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`);
+    await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`, {
+      env: { REVIEWDOG_GITHUB_API_TOKEN: `${githubToken}` },
+    });
   } catch (error) {
     core.setFailed(
       `ERROR: Action failed during execution with error: ${error.message}`
