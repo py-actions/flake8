@@ -1,7 +1,7 @@
 {
   "name": "flake8",
   "version": "1.1.0",
-  "description": "py-actions Python flake8 linting GitHub Action",
+  "description": "Python flake8 linting and Reviewdog annotation GitHub Action",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src/*.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/py-actions/flake8.git"
+    "url": "git+https://github.com/rickstaa/action-flake8.git"
   },
   "keywords": [
     "GitHub",
@@ -21,16 +21,17 @@
     "linting",
     "flake8"
   ],
-  "author": "py-actions Authors",
+  "author": "Rick Staa",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/py-actions/flake8/issues"
+    "url": "https://github.com/rickstaa/action-flake8/issues"
   },
-  "homepage": "https://github.com/py-actions/flake8",
+  "homepage": "https://github.com/rickstaa/action-flake8",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.4",
-    "wget": "0.0.1"
+    "@actions/glob": "^0.1.1",
+    "fs": "0.0.1-security"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",

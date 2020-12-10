@@ -70,6 +70,24 @@ See the Inputs section below for details on the defaults and optional configurat
 
 Configure the Action with the following _optional_ settings:
 
+### Pip options
+
+#### `update-pip`
+
+**Optional** Update `pip` before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
+
+#### `install-deps`
+
+**Optional** Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt) before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
+
+#### `dev-install`
+
+**Optional** Install the project in editable `-e` mode (i.e.  setuptools 'develop mode'). Options: [`"true"`, `"false"`]. Default = `"false"`.
+
+#### `req-file-path`
+
+**Optional** Path pointing to the requirements file. Default = `"./requirements.txt"`.
+
 ### Flake8 options
 
 #### `flake8-version`
@@ -103,10 +121,6 @@ See the inputs below for additional details.
 #### `max-line-length`
 
 **Optional** Integer value (as string) representing maximum acceptable line length. Default = flake8 default.
-
-#### `update-pip`
-
-**Optional** Update `pip` before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
 
 ### Reviewdog options
 

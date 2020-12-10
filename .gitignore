@@ -4,3 +4,4 @@
 # Folders to ignore
 .vscode
 node_modules
+*.egg-info/

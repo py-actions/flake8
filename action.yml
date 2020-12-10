@@ -11,6 +11,18 @@ inputs:
     description: "Boolean for pip upgrade prior to flake8 installation (default='false')"
     required: false
     default: "false" # options "true", "false"
+  install-deps:
+    description: "Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt)"
+    required: false
+    default: "false" # options "true", "false"
+  dev-install:
+    description: "Install the project in editable mode (i.e.  setuptools 'develop mode')"
+    required: false
+    default: "false" # options "true", "false"
+  req-file-path:
+    description: "Requirements file path."
+    required: false
+    default: "none" # any string is valid
   ignore:
     description: "Comma delimited list of ignored flake8 rule codes (optional)"
     required: false
