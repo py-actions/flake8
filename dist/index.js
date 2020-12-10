@@ -1712,9 +1712,9 @@ async function run() {
 
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
-    await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`, {
-      env: { REVIEWDOG_GITHUB_API_TOKEN: `${githubToken}` },
-    });
+    await exec.exec(
+      `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken} ${flake8Cmd}|${reviewdogCmd}"`
+    );
   } catch (error) {
     core.setFailed(
       `ERROR: Action failed during execution with error: ${error.message}`
