@@ -101,9 +101,7 @@ async function run() {
 
     // Validate reviewdog input arguments
     let reporterArg = "github-pr-check";
-    if (reporter === "github-pr-review") {
-      throw new Error("github-pr-review unsupported (for now)");
-    } else if (reporter !== "None") {
+    if (reporter !== "None") {
       reporterArg = reporter;
     }
     let levelArg = "error";
@@ -118,7 +116,7 @@ async function run() {
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
     await exec.exec(
-      `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken} ${flake8Cmd}|${reviewdogCmd}"`
+      `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}"`
     );
   } catch (error) {
     core.setFailed(
