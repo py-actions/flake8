@@ -1,10 +1,21 @@
-name: Test github action
+name: Test action-flake8 Github action
 on:
   push:
     branches:
       - master
   pull_request:
+
 jobs:
+  test-check:
+    name: runner / flake8 (github-check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: info
 
   test-pr-check:
     if: github.event_name == 'pull_request'
