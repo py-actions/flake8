@@ -146,7 +146,7 @@ None
 
 ## Acknowledgement
 
-:rocket: This github action was based on the flake8 action of [py-actions](https://github.com/py-actions/flake8).
+:rocket: This github action was based on the [flake8 action](https://github.com/marketplace/actions/python-flake8-lint) of [py-actions](https://github.com/py-actions) organization.
 
 ## License
 
