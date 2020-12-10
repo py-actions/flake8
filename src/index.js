@@ -95,10 +95,6 @@ async function run() {
     // concatenate test path
     flake8Cmd += ` ${sourcePath}`;
 
-    // Export github token
-    // console.log(`[*] Setting github api token as env variable...`);
-    // process.env.REVIEWDOG_GITHUB_API_TOKEN = githubToken;
-
     // Validate reviewdog input arguments
     let reporterArg = "github-pr-check";
     if (reporter !== "None") {
