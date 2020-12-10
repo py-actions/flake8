@@ -23,11 +23,11 @@ jobs:
       - name: Python environment report
         run: python -c "import sys; print(sys.version)"
       - name: Run ${{ matrix.python-version }} platform tests (default)
-        uses: py-actions/flake8@master
+        uses: reviewdog/action-flake8@master
         with:
           path: "tests/test-default.py" # have to restrict because there are other tests with flake8 fails
       - name: Run ${{ matrix.python-version }} platform tests (with args)
-        uses: py-actions/flake8@master
+        uses: reviewdog/action-flake8@master
         with:
           update_pip: "true"
           ignore: "F401"

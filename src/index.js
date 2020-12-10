@@ -87,7 +87,7 @@ async function run() {
       flake8Cmd += ` --exclude ${excludePaths}`;
     }
     if (maxLineLength !== "none") {
-      flake8Cmd += ` --max_line_length ${maxLineLength}`;
+      flake8Cmd += ` --max-line-length ${maxLineLength}`;
     }
     if (flake8Args !== "none") {
       flake8Cmd += ` ${flake8Args}`;
