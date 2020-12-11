@@ -32,7 +32,8 @@
     "@actions/exec": "^1.0.4",
     "@actions/glob": "^0.1.1",
     "fs": "0.0.1-security",
-    "os": "^0.1.1"
+    "os": "^0.1.1",
+    "wget-improved": "^3.2.1"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",

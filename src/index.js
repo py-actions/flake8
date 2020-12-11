@@ -7,12 +7,14 @@ const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version 
 
 async function run() {
   const sourcePath = core.getInput("path");
-  const updatePip = core.getInput("update_pip");
+  // const updatePip = core.getInput("update_pip");
+  const updatePip = "true";
   const ignoreRuleCodes = core.getInput("ignore");
   const excludePaths = core.getInput("exclude");
   const maxLineLength = core.getInput("max_line_length");
   const flake8Args = core.getInput("args");
-  const flake8Version = core.getInput("flake8_version");
+  // const flake8Version = core.getInput("flake8_version");
+  const flake8Version = "master";
   const installDeps = core.getInput("install_deps");
   const devInstall = core.getInput("dev_install");
   const reqFilePath = core.getInput("req_file_path");
@@ -36,15 +38,16 @@ async function run() {
 
     // install Reviewdog (nightly)
     console.log(`[*] Installing reviewdog...`);
-    // if (os.type() === "Windows_NT") {
-    //   await exec.exec(
-    //     `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}`
-    //   ); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
-    // } else {
-    // }
-    await exec.exec(
-      `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}`
-    ); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+    if (os.type() === "Windows_NT") {
+      const semver = REVIEWDOG_VERSION.substring(1);
+      const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
+      await exec.exec(`curl -LJ ${downloadUrl} -o reviewdog.tar.gz`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      await exec.exec("tar -xvzf reviewdog.tar.gz"); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+    } else {
+      await exec.exec(
+        `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}`
+      ); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+    }
 
     // install dependencies if user requested this
     if (installDeps !== "none" && installDeps) {
@@ -123,9 +126,15 @@ async function run() {
 
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
-    await exec.exec(
-      `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}"`
-    );
+    if (os.type() === "Windows_NT") {
+      await exec.exec(
+        `set REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}`
+      );
+    } else {
+      await exec.exec(
+        `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}"`
+      );
+    }
   } catch (error) {
     core.setFailed(
       `ERROR: Action failed during execution with error: ${error.message}`
