@@ -129,7 +129,8 @@ async function run() {
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
     if (process.platform === "win32") {
-      // const reviewdogExe = path.join(gh_ws_path, "reviewdog.exe");
+      const reviewdogExe = path.join(gh_ws_path, "reviewdog.exe");
+      console.log(reviewdogExe);
       const reviewdogCmd = `./reviewdog.exe -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
       await exec.exec(
         `set REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}`
