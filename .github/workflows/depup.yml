@@ -16,7 +16,7 @@ jobs:
         with:
           file: src/index.js
           version_name: REVIEWDOG_VERSION
-          repo: reviewdog/reviewdog
+          repo: reviewdog/nightly
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
