@@ -13,7 +13,7 @@ jobs:
       - uses: rickstaa/action-depup@master
         id: depup
         with:
-          file: Dockerfile
+          file: ./src/index.js
           version_name: REVIEWDOG_VERSION
           repo: reviewdog/reviewdog
 
