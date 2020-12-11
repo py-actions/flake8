@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: haya14busa/action-depup@v1
+      - uses: rickstaa/action-depup@ support_additional_version_syntax
         id: depup
         with:
           file: ./src/index.js
