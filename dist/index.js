@@ -1596,11 +1596,12 @@ function isUnixExecutable(stats) {
 const core = __webpack_require__(470);
 const exec = __webpack_require__(986);
 const fs = __webpack_require__(747);
-const os = __webpack_require__(87);
+const path = __webpack_require__(622);
 
 const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
 
 async function run() {
+  // Handle input args
   const sourcePath = core.getInput("path");
   const updatePip = core.getInput("update_pip");
   const ignoreRuleCodes = core.getInput("ignore");
@@ -1616,6 +1617,11 @@ async function run() {
   const level = core.getInput("level");
   const reporter = core.getInput("reporter");
 
+  // Get container info
+  let gh_ws_path = process.env.GITHUB_WORKSPACE;
+  if (gh_ws_path == null) {
+    gh_ws_path = "./";
+  }
   // ====================
   // Install dependencies
   // ====================
@@ -1627,15 +1633,14 @@ async function run() {
     }
 
     // install Reviewdog (nightly)
-    const os_plaform = os.platform();
-    const process_plaform = process.platform;
-    console.log(`[*] Platform ${process_plaform} and ${os_plaform}`);
     console.log(`[*] Installing reviewdog...`);
     if (process.platform === "win32") {
       const semver = REVIEWDOG_VERSION.substring(1);
       const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
-      await exec.exec(`curl -LJ ${downloadUrl} -o reviewdog.tar.gz`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
-      await exec.exec("tar -xvzf reviewdog.tar.gz"); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      const outputPath = path.join(gh_ws_path, "reviewdog.tar.gz");
+      console.log(`[*] Output path: ${outputPath}`);
+      await exec.exec(`curl -LJ ${downloadUrl} -o ${outputPath}`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      await exec.exec(`tar -xvzf ${outputPath}`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     } else {
       await exec.exec(
         `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}`
@@ -1719,7 +1724,8 @@ async function run() {
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
     if (process.platform === "win32") {
-      const reviewdogCmd = `reviewdog.exe -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
+      const reviewdogExe = path.join(gh_ws_path, "reviewdog.exe");
+      const reviewdogCmd = `${reviewdogExe} -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
       await exec.exec(
         `set REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}`
       );

@@ -43,6 +43,7 @@ async function run() {
       const semver = REVIEWDOG_VERSION.substring(1);
       const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
       const outputPath = path.join(gh_ws_path, "reviewdog.tar.gz");
+      console.log(`[*] Output path: ${outputPath}`);
       await exec.exec(`curl -LJ ${downloadUrl} -o ${outputPath}`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
       await exec.exec(`tar -xvzf ${outputPath}`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     } else {
