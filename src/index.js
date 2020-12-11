@@ -7,14 +7,12 @@ const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version 
 
 async function run() {
   const sourcePath = core.getInput("path");
-  // const updatePip = core.getInput("update_pip");
-  const updatePip = "true";
+  const updatePip = core.getInput("update_pip");
   const ignoreRuleCodes = core.getInput("ignore");
   const excludePaths = core.getInput("exclude");
   const maxLineLength = core.getInput("max_line_length");
   const flake8Args = core.getInput("args");
-  // const flake8Version = core.getInput("flake8_version");
-  const flake8Version = "master";
+  const flake8Version = core.getInput("flake8_version");
   const installDeps = core.getInput("install_deps");
   const devInstall = core.getInput("dev_install");
   const reqFilePath = core.getInput("req_file_path");
