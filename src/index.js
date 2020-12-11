@@ -1,7 +1,6 @@
 const core = require("@actions/core");
 const exec = require("@actions/exec");
 const fs = require("fs");
-const os = require("os");
 
 const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
 
@@ -31,12 +30,9 @@ async function run() {
       await exec.exec("python -m pip install --upgrade pip");
     }
 
-    const platform = os.type();
-    console.log(platform);
-
     // install Reviewdog (nightly)
     console.log(`[*] Installing reviewdog...`);
-    if (os.type() === "Windows_NT") {
+    if (process.platform === "win32") {
       const semver = REVIEWDOG_VERSION.substring(1);
       const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
       await exec.exec(`curl -LJ ${downloadUrl} -o reviewdog.tar.gz`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
@@ -120,15 +116,16 @@ async function run() {
 
     // setup reviewdog execution command
     console.log(`[*] Adding reviewdog command...`);
-    const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
 
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
-    if (os.type() === "Windows_NT") {
+    if (process.platform === "win32") {
+      const reviewdogCmd = `reviewdog.exe -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
       await exec.exec(
         `set REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}`
       );
     } else {
+      const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
       await exec.exec(
         `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}"`
       );
