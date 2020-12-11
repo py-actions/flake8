@@ -32,26 +32,14 @@
     "@actions/exec": "^1.0.4",
     "@actions/glob": "^0.1.1",
     "fs": "0.0.1-security",
-    "os": "^0.1.1",
-    "wget-improved": "^3.2.1"
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3",
-    "babel-eslint": "^9.0.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-config-wesbos": "0.0.20",
-    "eslint-plugin-html": "^5.0.5",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.1",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.2.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "jest": "^26.6.3",
-    "prettier": "^1.19.1"
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
