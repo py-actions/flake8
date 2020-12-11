@@ -1596,6 +1596,7 @@ function isUnixExecutable(stats) {
 const core = __webpack_require__(470);
 const exec = __webpack_require__(986);
 const fs = __webpack_require__(747);
+const os = __webpack_require__(87);
 
 const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
 
@@ -1626,10 +1627,20 @@ async function run() {
     }
 
     // install Reviewdog (nightly)
+    const os_plaform = os.platform();
+    const process_plaform = process.platform;
+    console.log(`[*] Platform ${process_plaform} and ${os_plaform}`);
     console.log(`[*] Installing reviewdog...`);
-    await exec.exec(
-      `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}`
-    ); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/346
+    if (process.platform === "win32") {
+      const semver = REVIEWDOG_VERSION.substring(1);
+      const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
+      await exec.exec(`curl -LJ ${downloadUrl} -o reviewdog.tar.gz`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      await exec.exec("tar -xvzf reviewdog.tar.gz"); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+    } else {
+      await exec.exec(
+        `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}`
+      ); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+    }
 
     // install dependencies if user requested this
     if (installDeps !== "none" && installDeps) {
@@ -1704,13 +1715,20 @@ async function run() {
 
     // setup reviewdog execution command
     console.log(`[*] Adding reviewdog command...`);
-    const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
 
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
-    await exec.exec(
-      `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}"`
-    );
+    if (process.platform === "win32") {
+      const reviewdogCmd = `reviewdog.exe -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
+      await exec.exec(
+        `set REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}`
+      );
+    } else {
+      const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
+      await exec.exec(
+        `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}"`
+      );
+    }
   } catch (error) {
     core.setFailed(
       `ERROR: Action failed during execution with error: ${error.message}`
