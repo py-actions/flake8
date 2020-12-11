@@ -36,3 +36,6 @@ jobs:
           args: "--quiet"
           path: "tests/test-args.py"
           flake8_version: "master"
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: info
