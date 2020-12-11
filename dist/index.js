@@ -1729,7 +1729,9 @@ async function run() {
       const reviewdogExe = __webpack_require__.ab + "reviewdog.exe";
       console.log(`[*] Reviewdog exe: ${reviewdogExe}`);
       const reviewdogCmd = `${reviewdogExe} -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
-      await exec.exec(`${flake8Cmd} | ${reviewdogExe} --help`);
+      await exec.exec(
+        `${flake8Cmd} | ${reviewdogExe} -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}"`
+      );
       // await exec.exec(`${flake8Cmd}|${reviewdogCmd}`, {
       //   env: { REVIEWDOG_GITHUB_API_TOKEN: `${githubToken}` },
       // });
