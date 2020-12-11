@@ -32,7 +32,8 @@
     "@actions/exec": "^1.0.4",
     "@actions/glob": "^0.1.1",
     "fs": "0.0.1-security",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",

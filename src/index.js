@@ -44,8 +44,8 @@ async function run() {
       const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
       const outputPath = path.join(gh_ws_path, "reviewdog.tar.gz");
       console.log(`[*] Output path: ${outputPath}`);
-      await exec.exec(`curl -LJ ${downloadUrl} -o ${outputPath}`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
-      await exec.exec(`tar -xvzf ${outputPath}`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      await exec.exec(`curl -LJ ${downloadUrl} -o ${outputPath}`);
+      await exec.exec(`tar -xvzf ${outputPath}`);
     } else {
       await exec.exec(
         `/bin/bash -c "wget -O - -q https://raw.githubusercontent.com/reviewdog/nightly/master/install.sh| sudo sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION}`
@@ -129,8 +129,8 @@ async function run() {
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
     if (process.platform === "win32") {
-      const reviewdogExe = path.join(gh_ws_path, "reviewdog.exe");
-      const reviewdogCmd = `${reviewdogExe} -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
+      // const reviewdogExe = path.join(gh_ws_path, "reviewdog.exe");
+      const reviewdogCmd = `./reviewdog.exe -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
       await exec.exec(
         `set REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}`
       );
