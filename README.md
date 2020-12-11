@@ -9,7 +9,7 @@
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 [![Linux CI](https://github.com/reviewdog/action-flake8/workflows/Linux%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22Linux+CI%22)
 [![macOS CI](https://github.com/reviewdog/action-flake8/workflows/macOS%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22macOS+CI%22)
-[![Lint](https://github.com/reviewdog/action-flake8/workflows/Lint/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3ALint)
+[![Windows CI](https://github.com/reviewdog/action-flake8/workflows/Windows%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22Windows+CI%22)
 
 This action runs flake8 with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to lint to lint python source files while creating annotations. It does this by installing the Python [flake8 package](https://pypi.org/project/flake8/) in an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files. Following [reviewdog](https://github.com/reviewdog/reviewdog) is used to parse the bash output into github annotations. Flake8 and reviewdog installation and execution defaults can be configured with optional Action settings.
 
