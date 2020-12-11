@@ -136,8 +136,7 @@ async function run() {
       const reviewdogExe = path.resolve(path.join(gh_ws_path, "reviewdog.exe"));
       console.log(`[*] Reviewdog exe: ${reviewdogExe}`);
       const reviewdogCmd = `${reviewdogExe} -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
-      await exec.exec(`${flake8Cmd}`);
-      await exec.exec(`${reviewdogExe} --help`);
+      await exec.exec(`${flake8Cmd} | ${reviewdogExe} --help`);
       // await exec.exec(`${flake8Cmd}|${reviewdogCmd}`, {
       //   env: { REVIEWDOG_GITHUB_API_TOKEN: `${githubToken}` },
       // });
