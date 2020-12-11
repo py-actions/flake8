@@ -5,8 +5,8 @@ on:
       - master
   pull_request:
 jobs:
-  shellcheck:
-    name: runner / shellcheck
+  eslint:
+    name: runner / eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,11 +16,10 @@ jobs:
           cond: ${{ github.event_name == 'pull_request' }}
           if_true: "github-pr-review"
           if_false: "github-check"
-      - uses: reviewdog/action-shellcheck@v1
+      - uses: reviewdog/action-eslint@v1
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: ${{ steps.reporter.outputs.value }}
-          level: warning
+          reporter: github-pr-review # Change reporter.
+          eslint_flags: 'src/'
 
   hadolint:
     name: runner / hadolint
