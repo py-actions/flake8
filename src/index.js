@@ -1,7 +1,7 @@
 const core = require("@actions/core");
 const exec = require("@actions/exec");
 const fs = require("fs");
-const fs = require("os");
+const os = require("os");
 
 const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
 
@@ -32,9 +32,10 @@ async function run() {
     }
 
     // install Reviewdog (nightly)
-    console.log(
-      `[*] Installing reviewdog...${process.platform} ${os.platform()}`
-    );
+    const os_plaform = os.platform();
+    const process_plaform = process.platform;
+    console.log(`[*] Platform ${process_plaform} and ${os_plaform}`);
+    console.log(`[*] Installing reviewdog...`);
     if (process.platform === "win32") {
       const semver = REVIEWDOG_VERSION.substring(1);
       const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
