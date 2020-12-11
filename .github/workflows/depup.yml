@@ -14,7 +14,7 @@ jobs:
       - uses: rickstaa/action-depup@master
         id: depup
         with:
-          file: tests/testfile
+          file: src/index.js
           version_name: REVIEWDOG_VERSION
           repo: reviewdog/reviewdog
 
