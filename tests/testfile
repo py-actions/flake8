@@ -1,0 +1,18 @@
+This is test file.
+
+REVIEWDOG_VERSION=v0.1.0
+REVIEWDOG_VERSION=0.1.0
+ENV REVIEWDOG_VERSION=0.1.0
+ENV REVIEWDOG_VERSION 0.1.0
+ARG REVIEWDOG_VERSION=0.1.0
+yaml:
+  REVIEWDOG_VERSION: 0.1.0
+
+The above version should be updated to the latest version with this action.
+
+
+Other test cases.
+
+REDPEN_VERSION=1.10.1
+
+TMUX_VERSION=3.0
