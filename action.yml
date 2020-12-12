@@ -46,6 +46,7 @@ inputs:
   github_token:
     description: The automatically created secret github action token.
     required: true
+    default: ${{ github.token }}
   level:
     description: 'Report level for reviewdog [info,warning,error]'
     required: false
