@@ -19,7 +19,6 @@ async function run() {
   const reqFilePath = core.getInput("req_file_path");
 
   const githubToken = core.getInput("github_token");
-  // const githubToken = "2342";
   const level = core.getInput("level");
   const reporter = core.getInput("reporter");
 
@@ -126,31 +125,20 @@ async function run() {
     if (level !== "None") {
       levelArg = level;
     }
-    // const reporterArg = "github-pr-check";
-    // const levelArg = "error";
-    // const flake8Cmd = "flake8";
 
     // Set reviewdog token
+    console.log(`[*] Add reviewdog github api tken...`);
     process.env.REVIEWDOG_GITHUB_API_TOKEN = githubToken;
 
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
     if (process.platform === "win32") {
-      // const reviewdogExe = path.resolve(path.join(gh_ws_path, "reviewdog.exe"));
       const reviewdogExe = "reviewdog.exe";
       const reviewdogCmd = `${reviewdogExe} -f flake8 -name=flake8-lint -reporter=${reporterArg} -level=${levelArg} -tee`;
-      // await exec.exec(`cmd /C "python -m ${flake8Cmd} | ${reviewdogCmd}"`, [], {
-      //   env: {
-      //     REVIEWDOG_GITHUB_API_TOKEN: githubToken,
-      //   },
-      // });
-      await exec.exec(`cmd /C "python -m ${flake8Cmd} | ${reviewdogCmd}"`);
+      await exec.exec(`cmd /C "python -m ${flake8Cmd} | ${reviewdogCmd}"`); // cmd /C is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     } else {
       const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
-      // await exec.exec(
-      //   `/bin/bash -c "export REVIEWDOG_GITHUB_API_TOKEN=${githubToken}; ${flake8Cmd}|${reviewdogCmd}"`
-      // );
-      await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`);
+      await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     }
   } catch (error) {
     core.setFailed(
