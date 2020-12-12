@@ -61,7 +61,7 @@ jobs:
         uses: reviewdog/action-flake8@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-check # Change reporter. (Only `github-pr-check` is supported at the moment).
+          reporter: github-pr-check
           level: warning
           ignore: "F401"
           exclude: "src/ignoreme.py"
