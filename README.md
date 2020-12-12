@@ -11,6 +11,8 @@
 [![macOS CI](https://github.com/reviewdog/action-flake8/workflows/macOS%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22macOS+CI%22)
 [![Windows CI](https://github.com/reviewdog/action-flake8/workflows/Windows%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22Windows+CI%22)
 
+![action example picture](https://user-images.githubusercontent.com/17570430/101988765-1d5b0080-3c9c-11eb-91c6-69b0e4846ba3.png)
+
 This action runs flake8 with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to lint to lint python source files while creating annotations. It does this by installing the Python [flake8 package](https://pypi.org/project/flake8/) in an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files. Following [reviewdog](https://github.com/reviewdog/reviewdog) is used to parse the bash output into github annotations. Flake8 and reviewdog installation and execution defaults can be configured with optional Action settings.
 
 ## Quick Start
