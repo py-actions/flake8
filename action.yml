@@ -1,7 +1,7 @@
 
 name: "Run flake8 with reviewdog"
 description: "🐶 Run flake8 with reviewdog on pull requests to lint python source files while creating annotations."
-author: Rick Staa
+author: "Rick Staa"
 inputs:
   path: # id
     description: "Path to source file or directory (default='.')"
