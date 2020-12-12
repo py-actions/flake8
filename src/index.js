@@ -3,7 +3,7 @@ const exec = require("@actions/exec");
 const fs = require("fs");
 const path = require("path");
 
-const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
+const REVIEWDOG_VERSION = "v0.11.0-nightly20201211+de569d1"; // Current version of reviewdog
 
 async function run() {
   // Handle input args
