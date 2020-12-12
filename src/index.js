@@ -130,7 +130,8 @@ async function run() {
     // execute flake8 with reviewdog annotations
     console.log(`[*] Executing flake8 + reviewdog command...`);
     if (process.platform === "win32") {
-      const reviewdogExe = path.resolve(path.join(gh_ws_path, "reviewdog.exe"));
+      // const reviewdogExe = path.resolve(path.join(gh_ws_path, "reviewdog.exe"));
+      const reviewdogExe = "reviewdog.exe";
       const reviewdogCmd = `${reviewdogExe} -f flake8 -name=flake8-lint -reporter=${reporterArg} -level=${levelArg} -tee`;
       await exec.exec(`cmd /C "python -m ${flake8Cmd} | ${reviewdogCmd}"`, [], {
         env: {
