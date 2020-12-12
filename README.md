@@ -139,13 +139,25 @@ See the inputs below for additional details.
 
 **Optional** The log level of the reviewdog reporter. Options: [`"info"`, `"warning"`, `"error"`]. Default = `"error"`.
 
-#### `level`
-
-**Optional** The log level of the reviewdog reporter. Options: [`"info"`, `"warning"`, `"error"`]. Default = `"error"`.
-
 #### `reporter`
 
 **Optional** The reviewdog reporter type. Only `github-pr-check` is supported at the moment. Default = `"github-pr-check"`.
+
+#### `filter_mode`
+
+**Optional** Filtering mode for the reviewdog command [added, diff_context, file, nofilter]. Default = `"added"`.
+
+#### `fail_on_error`
+
+**Optional** Exit code for reviewdog when errors are found [`true`, `false`]. Default = `false`.
+
+#### `reviewdog_flags`
+
+**Optional** Additional reviewdog flags. Default = `""`.
+
+#### `tool_name`
+
+**Optional** Tool name to use for reviewdog reporter. Default = `flake8`.
 
 ## Outputs
 

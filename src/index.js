@@ -19,8 +19,12 @@ async function run() {
   const reqFilePath = core.getInput("req_file_path");
 
   const githubToken = core.getInput("github_token");
-  const level = core.getInput("level");
+  const name = core.getInput("tool_name");
   const reporter = core.getInput("reporter");
+  const level = core.getInput("level");
+  const filterMode = core.getInput("filter_mode");
+  const frailOnError = core.getInput("fail_on_error");
+  const inputReviewdogFlags = core.getInput("reviewdog_flags");
 
   // Get container info
   let gh_ws_path = process.env.GITHUB_WORKSPACE;
@@ -117,7 +121,7 @@ async function run() {
     flake8Cmd += ` ${sourcePath}`;
 
     // Validate reviewdog input arguments
-    let reporterArg = "github-pr-check";
+    let reporterArg = "github-pr-review";
     if (reporter !== "None") {
       reporterArg = reporter;
     }
@@ -134,12 +138,11 @@ async function run() {
     console.log(`[*] Executing flake8 + reviewdog command...`);
     if (process.platform === "win32") {
       const reviewdogExe = "reviewdog.exe";
-      const reviewdogCmd = `${reviewdogExe} -f flake8 -name=flake8-lint -reporter=${reporterArg} -level=${levelArg} -tee`;
+      const reviewdogCmd = `${reviewdogExe} -f flake8 -name=${name} -reporter=${reporterArg} -level=${levelArg} -fail-on-error=${frailOnError} -filter-mode=${filterMode} ${inputReviewdogFlags} -tee`;
       await exec.exec(`cmd /C "python -m ${flake8Cmd} | ${reviewdogCmd}"`); // cmd /C is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     } else {
-      const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
-      await exec.exec(`/bin/bash -c "${flake8Cmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
-      // await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      const reviewdogCmd = `reviewdog -f flake8 -name=${name} -reporter="${reporterArg}" -level="${levelArg}" -fail-on-error=${frailOnError} -filter-mode=${filterMode} ${inputReviewdogFlags} -tee`;
+      await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     }
   } catch (error) {
     core.setFailed(

@@ -1,4 +1,3 @@
-
 name: "Run flake8 with reviewdog"
 description: "🐶 Run flake8 with reviewdog on pull requests to lint python source files while creating annotations."
 author: "Rick Staa"
@@ -48,16 +47,36 @@ inputs:
     required: true
     default: ${{ github.token }}
   level:
-    description: 'Report level for reviewdog [info,warning,error]'
+    description: "Report level for reviewdog [info,warning,error]"
     required: false
-    default: 'error'
+    default: "error"
   reporter:
     description: |
       Reporter of reviewdog command [github-pr-check,github-pr-review,github-check].
       Default is github-pr-check.
       github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
     required: false
-    default: 'github-pr-check'
+    default: "github-pr-check"
+  filter_mode:
+    description: |
+      Filtering mode for the reviewdog command [added, diff_context, file, nofilter].
+      Default is added.
+    required: false
+    default: "added"
+  fail_on_error:
+    description: |
+      Exit code for reviewdog when errors are found [true,false]
+      Default is `false`.
+    required: false
+    default: "false"
+  reviewdog_flags:
+    description: "Additional reviewdog flags"
+    required: false
+    default: ""
+  tool_name:
+    description: "Tool name to use for reviewdog reporter"
+    required: false
+    default: "flake8"
 
 runs:
   using: "node12"
