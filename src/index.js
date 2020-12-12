@@ -138,7 +138,8 @@ async function run() {
       await exec.exec(`cmd /C "python -m ${flake8Cmd} | ${reviewdogCmd}"`); // cmd /C is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     } else {
       const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
-      await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      await exec.exec(`/bin/bash -c "${flake8Cmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      // await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     }
   } catch (error) {
     core.setFailed(

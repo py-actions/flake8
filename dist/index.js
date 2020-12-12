@@ -1598,7 +1598,7 @@ const exec = __webpack_require__(986);
 const fs = __webpack_require__(747);
 const path = __webpack_require__(622);
 
-const REVIEWDOG_VERSION = "v0.11.0-nightly20201208+12faa31"; // Current version of reviewdog
+const REVIEWDOG_VERSION = "v0.11.0-nightly20201211+de569d1"; // Current version of reviewdog
 
 async function run() {
   // Handle input args
@@ -1733,7 +1733,8 @@ async function run() {
       await exec.exec(`cmd /C "python -m ${flake8Cmd} | ${reviewdogCmd}"`); // cmd /C is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     } else {
       const reviewdogCmd = `reviewdog -f flake8 -name="flake8-lint" -reporter="${reporterArg}" -level="${levelArg}" -tee`;
-      await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      await exec.exec(`/bin/bash -c "${flake8Cmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
+      // await exec.exec(`/bin/bash -c "${flake8Cmd}|${reviewdogCmd}"`); // /bin/bash -c is needed since @actions/exec does not yet support piping https://github.com/actions/toolkit/issues/359
     }
   } catch (error) {
     core.setFailed(
