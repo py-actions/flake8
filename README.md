@@ -202,4 +202,4 @@ reviewdog version.
 
 ## License
 
-[Apache License, v2.0](LICENSE)
+[MIT](LICENSE)
