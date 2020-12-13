@@ -2,6 +2,7 @@ name: "Run flake8 with reviewdog"
 description: "🐶 Run flake8 with reviewdog on pull requests to lint python source files while creating annotations."
 author: "Rick Staa"
 inputs:
+  # Flake8 related inputs
   path: # id
     description: "Path to source file or directory (default='.')"
     required: false
@@ -42,12 +43,17 @@ inputs:
     description: "The flake8 version for tests (optional, default='latest')"
     required: false
     default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
+  # Reviewdog related inputs
   github_token:
     description: The automatically created secret github action token.
     required: true
     default: ${{ github.token }}
+  tool_name:
+    description: "Tool name to use for reviewdog reporter"
+    required: false
+    default: "flake8-lint"
   level:
-    description: "Report level for reviewdog [info,warning,error]"
+    description: "Report level for reviewdog [info, warning, error]"
     required: false
     default: "error"
   reporter:
@@ -73,10 +79,6 @@ inputs:
     description: "Additional reviewdog flags"
     required: false
     default: ""
-  tool_name:
-    description: "Tool name to use for reviewdog reporter"
-    required: false
-    default: "flake8"
 
 runs:
   using: "node12"
