@@ -1,8 +1,9 @@
 name: depup
-  schedule:
-    - cron:  '14 14 * * *' # Runs at 14:14 UTC every day
-  repository_dispatch:
-    types: [depup]
+  on: [pull, push]
+# schedule:
+#     - cron:  '14 14 * * *' # Runs at 14:14 UTC every day
+#   repository_dispatch:
+#     types: [depup]
 
 jobs:
   reviewdog:
