@@ -8,7 +8,7 @@
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-flake8?logo=github&sort=semver)](https://github.com/reviewdog/action-flake8/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 [![Linux CI](https://github.com/reviewdog/action-flake8/workflows/Linux%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22Linux+CI%22)
-[![macOS CI](https://github.com/reviewdog/action-flake8/workflows/macOS%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22macOS+CI%22)
+[![MacOS CI](https://github.com/reviewdog/action-flake8/workflows/MacOS%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22MacOS+CI%22)
 [![Windows CI](https://github.com/reviewdog/action-flake8/workflows/Windows%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22Windows+CI%22)
 
 ![action example picture](https://user-images.githubusercontent.com/17570430/101988765-1d5b0080-3c9c-11eb-91c6-69b0e4846ba3.png)
