@@ -1,6 +1,5 @@
-# reviewdog/action-flake8 GitHub Action
+# Reviewdog/action-flake8 GitHub Action
 
-![Version](https://img.shields.io/github/v/release/reviewdog/action-flake8?sort=semver)
 [![Test](https://github.com/reviewdog/action-flake8/workflows/Test/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3ATest)
 [![reviewdog](https://github.com/reviewdog/action-flake8/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3Areviewdog)
 [![depup](https://github.com/reviewdog/action-flake8/workflows/depup/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3Adepup)
