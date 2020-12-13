@@ -1,5 +1,4 @@
 name: depup
-  pull:
   schedule:
     - cron:  '14 14 * * *' # Runs at 14:14 UTC every day
   repository_dispatch:
