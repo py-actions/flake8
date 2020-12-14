@@ -2,7 +2,7 @@ name: Windows CI
 
 on:
   schedule:
-    - cron: "5 * * * *" # Disabled due to reviewdog upstream bug https://github.com/reviewdog/reviewdog/issues/832
+    - cron: "*/10 * * * *" # Disabled due to reviewdog upstream bug https://github.com/reviewdog/reviewdog/issues/832
   push:
   pull_request:
 
