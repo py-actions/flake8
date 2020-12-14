@@ -9,7 +9,8 @@
 [![MacOS CI](https://github.com/reviewdog/action-flake8/workflows/MacOS%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22MacOS+CI%22)
 [![Windows CI](https://github.com/reviewdog/action-flake8/workflows/Windows%20CI/badge.svg)](https://github.com/reviewdog/action-flake8/actions?query=workflow%3A%22Windows+CI%22)
 
-![action example picture](https://user-images.githubusercontent.com/17570430/101988765-1d5b0080-3c9c-11eb-91c6-69b0e4846ba3.png)
+![github-pr-review example picture](https://user-images.githubusercontent.com/17570430/101988765-1d5b0080-3c9c-11eb-91c6-69b0e4846ba3.png)
+![github-check example picture](https://user-images.githubusercontent.com/17570430/102074231-bd339e00-3e04-11eb-95be-42130b8a6754.png)
 
 This action runs flake8 with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to lint to lint python source files while creating annotations. It does this by installing the Python [flake8 package](https://pypi.org/project/flake8/) in an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files. Following [reviewdog](https://github.com/reviewdog/reviewdog) is used to parse the bash output into github annotations. Flake8 and reviewdog installation and execution defaults can be configured with optional Action settings. This action is meant to be run inside a existing workflow and therefore does not does not install [python](https://www.python.org/) or setup a python environment.
 
