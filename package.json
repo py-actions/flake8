@@ -1,6 +1,6 @@
 {
   "name": "action-flake8",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "description": "Python flake8 linting and Reviewdog annotation GitHub Action",
   "main": "src/index.js",
   "scripts": {
