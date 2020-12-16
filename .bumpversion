@@ -1,0 +1,7 @@
+[bumpversion]
+current_version = 2.6.1
+commit = True
+message = :bookmark: Bump version: {current_version} → {new_version}
+tag = True
+
+[bumpversion:file:package.js]
