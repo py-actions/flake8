@@ -4,4 +4,4 @@ commit = True
 message = :bookmark: Bump version: {current_version} → {new_version}
 tag = True
 
-[bumpversion:file:package.js]
+[bumpversion:file:package.json]
