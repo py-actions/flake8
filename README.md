@@ -31,11 +31,11 @@ jobs:
       - name: Check out source repository
         uses: actions/checkout@v2
       - name: Set up Python environment
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: "3.8"
       - name: flake8 Lint
-        uses: reviewdog/flake8@v2
+        uses: reviewdog/action-flake8@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -55,7 +55,7 @@ jobs:
       - name: Check out source repository
         uses: actions/checkout@v2
       - name: Set up Python environment
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: "3.8"
       - name: flake8 Lint
@@ -100,9 +100,9 @@ Configure the Action with the following _optional_ settings:
 
 **Optional** flake8 version for testing. Options: \['latest', 'master', '[VERSION NUMBER]']. Default = `"latest"`.
 
--   'latest' = current PyPI release version
--   'master' = current [GitLab source repository master branch version](https://gitlab.com/pycqa/flake8)
--   '[VERSION NUMBER]' = the version number of the [flake8 PyPI package](https://pypi.org/project/flake8/) (e.g., `"3.7.9"`)
+- 'latest' = current PyPI release version
+- 'master' = current [GitLab source repository master branch version](https://gitlab.com/pycqa/flake8)
+- '[VERSION NUMBER]' = the version number of the [flake8 PyPI package](https://pypi.org/project/flake8/) (e.g., `"3.7.9"`)
 
 #### `path`
 
@@ -185,9 +185,9 @@ which is useful for Docker container based actions.
 
 Supported linters:
 
--   [reviewdog/action-shellcheck](https://github.com/reviewdog/action-shellcheck)
--   [reviewdog/action-hadolint](https://github.com/reviewdog/action-hadolint)
--   [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
+- [reviewdog/action-shellcheck](https://github.com/reviewdog/action-shellcheck)
+- [reviewdog/action-hadolint](https://github.com/reviewdog/action-hadolint)
+- [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
 
 ### Dependencies Update Automation
 
