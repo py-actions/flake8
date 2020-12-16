@@ -27,9 +27,9 @@ async function run() {
   const inputReviewdogFlags = core.getInput("reviewdog_flags");
 
   // Get container info
-  let gh_ws_path = process.env.GITHUB_WORKSPACE;
-  if (gh_ws_path == null) {
-    gh_ws_path = "./";
+  let ghWsPath = process.env.GITHUB_WORKSPACE;
+  if (ghWsPath == null) {
+    ghWsPath = "./";
   }
   // ====================
   // Install dependencies
@@ -42,15 +42,13 @@ async function run() {
     }
 
     // install Reviewdog (nightly)
-    console.log(`[*] Installing reviewdog...`);
+    console.log("[*] Installing reviewdog...");
     if (process.platform === "win32") {
       const semver = REVIEWDOG_VERSION.substring(1);
       const downloadUrl = `https://github.com/reviewdog/nightly/releases/download/${REVIEWDOG_VERSION}/reviewdog_${semver}_Windows_x86_64.tar.gz`;
-      const outputPath = path.resolve(
-        path.join(gh_ws_path, "reviewdog.tar.gz")
-      );
+      const outputPath = path.resolve(path.join(ghWsPath, "reviewdog.tar.gz"));
       console.log(`[*] Output path: ${outputPath}`);
-      console.log(`[*] test`);
+      console.log("[*] test");
       await exec.exec(`curl -LJ ${downloadUrl} -o ${outputPath}`);
       await exec.exec(`tar -xkvzf ${outputPath}`);
     } else {
@@ -71,18 +69,18 @@ async function run() {
       }
       try {
         if (fs.existsSync("setup.py")) {
-          console.log(`[*] Installing python package and dependencies...`);
+          console.log("[*] Installing python package and dependencies...");
           await exec.exec(`python -m pip install ${devArg} .`);
         } else if (fs.existsSync("requirements.txt")) {
-          console.log(`[*] Installing package dependencies...`);
+          console.log("[*] Installing package dependencies...");
           await exec.exec(`python -m pip install -r ${reqFilePathArg}`);
         } else {
           console.log(
-            `[*] Installing package dependencies failed as no 'setup.py' or 'requirements.txt' was found.`
+            "[*] Installing package dependencies failed as no 'setup.py' or 'requirements.txt' was found."
           );
         }
       } catch (error) {
-        console.log(`[*] Installing package dependencies failed.`);
+        console.log("[*] Installing package dependencies failed.");
       }
     }
 
@@ -131,11 +129,11 @@ async function run() {
     }
 
     // Set reviewdog token
-    console.log(`[*] Add reviewdog github api tken...`);
+    console.log("[*] Add reviewdog github api tken...");
     process.env.REVIEWDOG_GITHUB_API_TOKEN = githubToken;
 
     // execute flake8 with reviewdog annotations
-    console.log(`[*] Executing flake8 + reviewdog command...`);
+    console.log("[*] Executing flake8 + reviewdog command...");
     if (process.platform === "win32") {
       const reviewdogExe = "reviewdog.exe";
       const reviewdogCmd = `${reviewdogExe} -f flake8 -name=${name} -reporter=${reporterArg} -level=${levelArg} -fail-on-error=${frailOnError} -filter-mode=${filterMode} ${inputReviewdogFlags} -tee`;
