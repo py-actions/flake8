@@ -4,19 +4,19 @@ author: "Rick Staa"
 inputs:
   # Flake8 related inputs
   path: # id
-    description: "Path to source file or directory (default='.')"
+    description: "Path to source file or directory."
     required: false
     default: "." # default path is the root of the source repository
   update_pip: # id
-    description: "Boolean for pip upgrade prior to flake8 installation (default='false')"
+    description: "Boolean for pip upgrade prior to flake8 installation."
     required: false
     default: "false" # options "true", "false"
   install_deps:
-    description: "Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt)"
+    description: "Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt)."
     required: false
     default: "false" # options "true", "false"
   dev_install:
-    description: "Install the project in editable mode (i.e.  setuptools 'develop mode')"
+    description: "Install the project in editable mode (i.e.  setuptools 'develop mode')."
     required: false
     default: "false" # options "true", "false"
   req_file_path:
@@ -24,55 +24,48 @@ inputs:
     required: false
     default: "none" # any string is valid
   ignore:
-    description: "Comma delimited list of ignored flake8 rule codes (optional)"
+    description: "Comma delimited list of ignored flake8 rule codes."
     required: false
     default: "none" # comma delimited list of ignored rule codes
   exclude:
-    description: "Comma delimited list of excluded paths (optional)"
+    description: "Comma delimited list of excluded paths."
     required: false
     default: "none" # comma delimited list of paths
   max_line_length:
-    description: "Integer value representing max acceptable line length (optional)"
+    description: "Integer value representing max acceptable line length."
     required: false
     default: "none" # integer value as a string
   args:
-    description: "flake8 arguments for test execution (optional)"
+    description: "flake8 arguments for test execution."
     required: false
     default: "none" # integer value as a string
   flake8_version:
-    description: "The flake8 version for tests (optional, default='latest')"
+    description: "The flake8 version for tests (optional, default='latest')."
     required: false
     default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
   # Reviewdog related inputs
   github_token:
-    description: The automatically created secret github action token.
+    description: "GITHUB_TOKEN."
     required: true
     default: ${{ github.token }}
   tool_name:
-    description: "Tool name to use for reviewdog reporter"
+    description: "Tool name to use for reviewdog reporter."
     required: false
     default: "flake8-lint"
   level:
-    description: "Report level for reviewdog [info, warning, error]"
+    description: "Report level for reviewdog [info, warning, error]."
     required: false
     default: "error"
   reporter:
-    description: |
-      Reporter of reviewdog command [github-pr-check,github-pr-review,github-check].
-      Default is github-pr-check.
-      github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+    description: "Reporter of reviewdog command [github-pr-check,github-pr-review,github-check]."
     required: false
     default: "github-pr-check"
   filter_mode:
-    description: |
-      Filtering mode for the reviewdog command [added, diff_context, file, nofilter].
-      Default is added.
+    description: "Filtering mode for the reviewdog command [added, diff_context, file, nofilter]."
     required: false
     default: "added"
   fail_on_error:
-    description: |
-      Exit code for reviewdog when errors are found [true,false]
-      Default is `false`.
+    description: "Exit code for reviewdog when errors are found [true,false]."
     required: false
     default: "false"
   reviewdog_flags:

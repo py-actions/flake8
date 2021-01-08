@@ -80,37 +80,37 @@ Configure the Action with the following _optional_ settings:
 
 #### `update_pip`
 
-**Optional** Update `pip` before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
+**Optional**. Update `pip` before the flake8 install. Options: `[true, false]`. Defaults to `false`.
 
 #### `install_deps`
 
-**Optional** Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt) before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
+**Optional**. Install the python project and dependencies (uses `setup.py`, `pyproject.toml` or `requirements.txt`) before the flake8 install. Options: `[true, false]`. Defaults to `false`.
 
 #### `dev_install`
 
-**Optional** Install the project in editable `-e` mode (i.e.  setuptools 'develop mode'). Options: [`"true"`, `"false"`]. Default = `"false"`.
+**Optional**. Install the project in editable `-e` mode (i.e.  [setuptools](https://pypi.org/project/setuptools/) 'develop mode'). Options: `[true, false]`. Defaults to `false`.
 
 #### `req_file_path`
 
-**Optional** Path pointing to the requirements file. Default = `"./requirements.txt"`.
+**Optional**. Path pointing to the requirements file. Defaults to `./requirements.txt`.
 
 ### Flake8 options
 
 #### `flake8_version`
 
-**Optional** flake8 version for testing. Options: \['latest', 'master', '[VERSION NUMBER]']. Default = `"latest"`.
+**Optional**. flake8 version for testing. Options: `[latest, master, <VERSION NUMBER>]`. Defaults to `latest`.
 
-- 'latest' = current PyPI release version
-- 'master' = current [GitLab source repository master branch version](https://gitlab.com/pycqa/flake8)
-- '[VERSION NUMBER]' = the version number of the [flake8 PyPI package](https://pypi.org/project/flake8/) (e.g., `"3.7.9"`)
+- `latest` = current PyPI release version
+- `master` = current [GitLab source repository master branch version](https://gitlab.com/pycqa/flake8)
+- `<VERSION NUMBER>` = the version number of the [flake8 PyPI package](https://pypi.org/project/flake8/) (e.g., `3.7.9`)
 
 #### `path`
 
-**Optional** The path to the Python source file(s) or directory. Default = `"."`.
+**Optional**. The path to the Python source file(s) or directory. Defaults to `"."`.
 
 #### `args`
 
-**Optional** Command line arguments to the flake8 executable. Default = None.
+**Optional**. Command line arguments to the flake8 executable. Defaults to `None`.
 
 Please note that some command line arguments can be defined with other fields in your configuration.  You may combine the `args` setting with the other settings below, or use `args` to configure flake8 without the other Action settings.
 
@@ -118,83 +118,45 @@ See the inputs below for additional details.
 
 #### `exclude`
 
-**Optional** Comma-delimited list of ignored file paths. Default = flake8 default.
+**Optional**. Comma-delimited list of ignored file paths. Defaults to flake8 defaults.
 
 #### `ignore`
 
-**Optional** Comma-delimited list of ignored flake8 rule codes. Default = flake8 default.
+**Optional**. Comma-delimited list of ignored flake8 rule codes. Defaults to flake8 defaults.
 
 #### `max_line_length`
 
-**Optional** Integer value (as string) representing maximum acceptable line length. Default = flake8 default.
+**Optional**. Integer value (as string) representing maximum acceptable line length. Defaults to flake8 default.
 
 ### Reviewdog options
 
-#### `github_token`
+### `github_token`
 
-**Required** The automatically created secret github action token (supply as '${{ secrets.GITHUB_TOKEN }}'').
+**Required**. The [GITHUB_TOKEN](https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow). Must be in form of `github_token: ${{ secrets.github_token }}`. Defaults to `${{ github.token }}`.
 
 #### `level`
 
-**Optional** The log level of the reviewdog reporter. Options: [`"info"`, `"warning"`, `"error"`]. Default = `"error"`.
+**Optional**. The log level of the reviewdog reporter. Options: `[info, warning, error]`. Defaults to `error`.
 
 #### `reporter`
 
-**Optional** The reviewdog reporter type. Only `github-pr-check` is supported at the moment. Default = `"github-pr-check"`.
+**Optional**. Reporter of reviewdog command `[github-pr-check, github-pr-review, github-check]`. Defaults to `github-pr-check`.
 
 #### `filter_mode`
 
-**Optional** Filtering mode for the reviewdog command [added, diff_context, file, nofilter]. Default = `"added"`.
+**Optional**. Filtering mode for the reviewdog command `[added, diff_context, file, nofilter]`. Defaults to `added`.
 
 #### `fail_on_error`
 
-**Optional** Exit code for reviewdog when errors are found [`true`, `false`]. Default = `false`.
+**Optional**. Exit code for reviewdog when errors are found `[true, false]`. Defaults to `false`.
 
 #### `reviewdog_flags`
 
-**Optional** Additional reviewdog flags. Default = `""`.
+**Optional**. Additional reviewdog flags. Defaults to `""`.
 
 #### `tool_name`
 
-**Optional** Tool name to use for reviewdog reporter. Default = `flake8`.
-
-## Outputs
-
-None
-
-## Development
-
-### Release
-
-#### [haya14busa/action-bumpr](https://github.com/haya14busa/action-bumpr)
-
-You can bump version on merging Pull Requests with specific labels (bump:major,bump:minor,bump:patch).
-Pushing tag manually by yourself also work.
-
-#### [haya14busa/action-update-semver](https://github.com/haya14busa/action-update-semver)
-
-This action updates major/minor release tags on a tag push. e.g. Update v1 and v1.2 tag when released v1.2.3.
-ref: <https://help.github.com/en/articles/about-actions#versioning-your-action>
-
-### Lint - reviewdog integration
-
-This reviewdog action template itself is integrated with reviewdog to run lints
-which is useful for Docker container based actions.
-
-![reviewdog integration](https://user-images.githubusercontent.com/3797062/72735107-7fbb9600-3bde-11ea-8087-12af76e7ee6f.png)
-
-Supported linters:
-
-- [reviewdog/action-shellcheck](https://github.com/reviewdog/action-shellcheck)
-- [reviewdog/action-hadolint](https://github.com/reviewdog/action-hadolint)
-- [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
-
-### Dependencies Update Automation
-
-This repository uses [haya14busa/action-depup](https://github.com/haya14busa/action-depup) to update
-reviewdog version.
-
-[![reviewdog depup demo](https://user-images.githubusercontent.com/3797062/73154254-170e7500-411a-11ea-8211-912e9de7c936.png)](https://github.com/reviewdog/action-flake8/pull/6)
+**Optional**. Tool name to use for reviewdog reporter. Defaults to `flake8`.
 
 ## Acknowledgement
 
