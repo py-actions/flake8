@@ -42,7 +42,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: bash $GITHUB_ACTION_PATH/entrypoint.sh
+    - run: $GITHUB_ACTION_PATH/entrypoint.sh
       shell: bash
       env:
         INPUT_WORKDIR: ${{ inputs.workdir }}

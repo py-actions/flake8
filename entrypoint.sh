@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -eu # Increase bash strictness
 
 if [[ -n "${GITHUB_WORKSPACE}" ]]; then
