@@ -68,5 +68,5 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           level: error
-          reviewdog_flags: -filter-mode=file
+          reviewdog_flags: -filter-mode=file # -fail-on-error # NOTE: Disabled due to bug https://github.com/reviewdog/reviewdog/issues/848
           workdir: ./testdata/
