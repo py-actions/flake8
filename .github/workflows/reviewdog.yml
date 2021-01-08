@@ -18,7 +18,7 @@ jobs:
           if_false: "github-check"
       - uses: reviewdog/action-eslint@v1
         with:
-          reporter: github-pr-review # Change reporter.
+          reporter: ${{ steps.reporter.outputs.value }}
           eslint_flags: 'src/'
 
   hadolint:
