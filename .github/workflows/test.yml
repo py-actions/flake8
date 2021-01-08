@@ -1,0 +1,72 @@
+name: Test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  test-check:
+    name: runner / flake8 (github-check)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9, pypy3]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }} environment
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Python environment report
+        run: python -c "import sys; print(sys.version)"
+      - uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: info
+          workdir: ./testdata/
+
+  test-pr-check:
+    if: github.event_name == 'pull_request'
+    name: runner / flake8 (github-pr-check)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9, pypy3]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }} environment
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Python environment report
+        run: python -c "import sys; print(sys.version)"
+      - uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          level: warning
+          workdir: ./testdata/
+
+  test-pr-review:
+    if: github.event_name == 'pull_request'
+    name: runner / flake8 (github-pr-review)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9, pypy3]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }} environment
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Python environment report
+        run: python -c "import sys; print(sys.version)"
+      - uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: error
+          reviewdog_flags: -filter-mode=file -fail-on-error
+          workdir: ./testdata/

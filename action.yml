@@ -1,48 +1,15 @@
 name: "Run flake8 with reviewdog"
-description: "🐶 Run flake8 with reviewdog on pull requests to lint python source files while creating annotations."
+description: "🐶 Run flake8 with reviewdog on pull requests to improve code review experience."
 author: "Rick Staa"
 inputs:
-  # Flake8 related inputs
-  path: # id
-    description: "Path to source file or directory."
+  workdir:
+    description: "Working directory relative to the root directory."
     required: false
-    default: "." # default path is the root of the source repository
-  update_pip: # id
-    description: "Boolean for pip upgrade prior to flake8 installation."
+    default: "."
+  flak8_args:
+    description: "Additional flake8 flags."
     required: false
-    default: "false" # options "true", "false"
-  install_deps:
-    description: "Install the python project and dependencies (uses setup.py, pyproject.toml or requirements.txt)."
-    required: false
-    default: "false" # options "true", "false"
-  dev_install:
-    description: "Install the project in editable mode (i.e.  setuptools 'develop mode')."
-    required: false
-    default: "false" # options "true", "false"
-  req_file_path:
-    description: "Requirements file path."
-    required: false
-    default: "none" # any string is valid
-  ignore:
-    description: "Comma delimited list of ignored flake8 rule codes."
-    required: false
-    default: "none" # comma delimited list of ignored rule codes
-  exclude:
-    description: "Comma delimited list of excluded paths."
-    required: false
-    default: "none" # comma delimited list of paths
-  max_line_length:
-    description: "Integer value representing max acceptable line length."
-    required: false
-    default: "none" # integer value as a string
-  args:
-    description: "flake8 arguments for test execution."
-    required: false
-    default: "none" # integer value as a string
-  flake8_version:
-    description: "The flake8 version for tests (optional, default='latest')."
-    required: false
-    default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
+    default: ""
   # Reviewdog related inputs
   github_token:
     description: "GITHUB_TOKEN."
@@ -51,13 +18,13 @@ inputs:
   tool_name:
     description: "Tool name to use for reviewdog reporter."
     required: false
-    default: "flake8-lint"
+    default: "flake8"
   level:
     description: "Report level for reviewdog [info, warning, error]."
     required: false
     default: "error"
   reporter:
-    description: "Reporter of reviewdog command [github-pr-check,github-pr-review,github-check]."
+    description: "Reporter of reviewdog command [github-pr-check, github-pr-review, github-check]."
     required: false
     default: "github-pr-check"
   filter_mode:
@@ -65,18 +32,30 @@ inputs:
     required: false
     default: "added"
   fail_on_error:
-    description: "Exit code for reviewdog when errors are found [true,false]."
+    description: "Exit code for reviewdog when errors are found [true, false]."
     required: false
     default: "false"
   reviewdog_flags:
-    description: "Additional reviewdog flags"
+    description: "Additional reviewdog flags."
     required: false
     default: ""
-
 runs:
-  using: "node12"
-  main: "dist/index.js"
+  using: "composite"
+  steps:
+    - run: bash $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: bash
+      env:
+        INPUT_WORKDIR: ${{ inputs.workdir }}
+        INPUT_FLAKE8_ARGS: ${{ inputs.flake8_Args }}
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_TOOL_NAME: ${{ inputs.tool_name }}
+        INPUT_LEVEL: ${{ inputs.level }}
+        INPUT_REPORTER: ${{ inputs.reporter }}
+        INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
+        INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
+        INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
 
+# Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
   icon: "check"
   color: "blue"
