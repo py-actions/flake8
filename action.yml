@@ -6,8 +6,8 @@ inputs:
     description: "Working directory relative to the root directory."
     required: false
     default: "."
-  flak8_args:
-    description: "Additional flake8 flags."
+  flake8_args:
+    description: "Additional flake8 arguments."
     required: false
     default: ""
   # Reviewdog related inputs
