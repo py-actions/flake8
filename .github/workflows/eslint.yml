@@ -5,16 +5,13 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: ["12"]
-    name: Node ${{ matrix.node }} eslint run
+    name: Node 12 eslint run
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 12
       - name: Install eslint
         run: npm install eslint
       - name: Lint
