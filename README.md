@@ -32,7 +32,7 @@ jobs:
         uses: py-actions/flake8@v1
 ```
 
-### With non-default settings
+### With custom settings
 
 ```yaml
 name: flake8 Lint
@@ -104,6 +104,10 @@ See the inputs below for additional details.
 ## Outputs
 
 None
+
+## Support
+
+The project is tested against the latest GitHub Actions CI releases of the cPython versions 3.6 - 3.10 and pypy3 interpreters on a nightly basis.
 
 ## License
 
