@@ -1652,9 +1652,7 @@ async function run() {
     // execute flake8
     await exec.exec(`${flake8Cmd}`);
   } catch (error) {
-    core.setFailed(
-      `ERROR: Action failed during execution with error: ${error.message}`
-    );
+    core.setFailed(`${error.message}`);
   }
 }
 
