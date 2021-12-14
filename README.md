@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: "3.8"
       - name: flake8 Lint
-        uses: py-actions/flake8@v1
+        uses: py-actions/flake8@v2
 ```
 
 ### With custom settings
@@ -53,7 +53,7 @@ jobs:
         with:
           python-version: "3.8"
       - name: flake8 Lint
-        uses: py-actions/flake8@v1
+        uses: py-actions/flake8@v2
         with:
           ignore: "F401"
           exclude: "src/ignoreme.py"
