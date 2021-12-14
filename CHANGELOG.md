@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.0.0
+
+- Remove cPython 3.6 GitHub Actions test runner support (all platforms)
+- Add cPython 3.10 GitHub Actions test runner support (all platforms)
+- update eslint-plugin-import to ^2.25.3
+- update eslint-plugin-jsx-a11y to ^6.5.1
+- update eslint-plugin-react to ^7.27.1
+- update jest to ^27.4.5
+
 ## v1.2.0
 
 - Fix: remove custom error string "ERROR: Action failed during execution with error: " in non-zero exit status code reporting.  This was not semantically correct when flake8 raises a non-zero exit code for failed lints

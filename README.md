@@ -8,6 +8,8 @@
 
 This GitHub Action installs the Python [flake8 package](https://pypi.org/project/flake8/) in an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files.  flake8 installation and execution defaults can be configured with optional Action settings.
 
+The project is tested against the latest GitHub Actions Linux, macOS, and Windows runner environment cPython versions 3.7 - 3.10 interpreters on a nightly basis.
+
 ## Quick Start
 
 ### Default
@@ -29,7 +31,7 @@ jobs:
         with:
           python-version: "3.8"
       - name: flake8 Lint
-        uses: py-actions/flake8@v1
+        uses: py-actions/flake8@v2
 ```
 
 ### With custom settings
@@ -51,7 +53,7 @@ jobs:
         with:
           python-version: "3.8"
       - name: flake8 Lint
-        uses: py-actions/flake8@v1
+        uses: py-actions/flake8@v2
         with:
           ignore: "F401"
           exclude: "src/ignoreme.py"
@@ -104,10 +106,6 @@ See the inputs below for additional details.
 ## Outputs
 
 None
-
-## Support
-
-The project is tested against the latest GitHub Actions CI releases of the cPython versions 3.6 - 3.10 and pypy3 interpreters on a nightly basis.
 
 ## License
 
