@@ -3253,7 +3253,7 @@ async function run() {
     console.log(`[*] Installing flake8 package @ ${flake8Version}...`);
     if (flake8Version === "latest") {
       await exec.exec("python -m pip install --upgrade flake8");
-    } else if (flake8Version === "master") {
+    } else if (flake8Version === "master" || flake8Version === "main") {
       await exec.exec(
         "python -m pip install --upgrade git+https://github.com/PyCQA/flake8.git"
       );
