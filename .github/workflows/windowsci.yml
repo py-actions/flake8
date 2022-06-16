@@ -37,4 +37,4 @@ jobs:
           max-line-length: "100"
           args: "--quiet"
           path: "tests/test-args.py"
-          flake8-version: "master"
+          flake8-version: "main"
