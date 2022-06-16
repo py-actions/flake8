@@ -69,10 +69,10 @@ Configure the Action with the following *optional* settings:
 
 ### `flake8-version`
 
-**Optional** flake8 version for testing. Options: ['latest', 'master', '[VERSION NUMBER]'].Default = `"latest"`.
+**Optional** flake8 version for testing. Options: ['latest', 'main', 'master', '[VERSION NUMBER]'].Default = `"latest"`.
 
 - 'latest' = current PyPI release version
-- 'master' = current [GitLab source repository master branch version](https://gitlab.com/pycqa/flake8)
+- 'main' = current [GitHub source repository main branch version](https://github.com/PyCQA/flake8)
 - '[VERSION NUMBER]' = the version number of the [flake8 PyPI package](https://pypi.org/project/flake8/) (e.g., `"3.7.9"`)
 
 ### `path`
