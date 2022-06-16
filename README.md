@@ -103,6 +103,10 @@ See the inputs below for additional details.
 
 **Optional** Update `pip` before the flake8 install. Options: [`"true"`, `"false"`]. Default = `"false"`.
 
+### `plugins`
+
+**Optional** Space delimited list of flake8 plugin packages to install with pip prior to flake8 execution.  Default = none.
+
 ## Outputs
 
 None
