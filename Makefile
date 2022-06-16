@@ -5,9 +5,9 @@ lint:
 	npm run lint
 
 update:
-	npm update
+	npm update --legacy-peer-deps
 
 dev-update:
-	npm update --dev
+	npm update --include=dev --legacy-peer-deps
 
 .PHONY: dev-update dist lint update
