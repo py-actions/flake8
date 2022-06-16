@@ -29,7 +29,7 @@ jobs:
         with:
           path: "tests/test-default.py" # have to restrict because there are other tests with flake8 fails
       - name: Run ${{ matrix.python-version }} platform tests (with args)
-        uses: py-actions/flake8@master
+        uses: py-actions/flake8@flake8-repo
         with:
           update-pip: "true"
           ignore: "F401"
