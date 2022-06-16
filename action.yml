@@ -28,7 +28,7 @@ inputs:
   flake8-version:
     description: "The flake8 version for tests (optional, default='latest')"
     required: false
-    default: "latest" # possible values ['latest', 'master', '[VERSION NUMBER]']
+    default: "latest" # possible values ['latest', 'master', 'main', '[VERSION NUMBER]']
 
 runs:
   using: "node16"
