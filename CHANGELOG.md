@@ -1,5 +1,20 @@
 # Changelog
 
+## v2.1.0
+
+- Move remote git repository for flake8 default source branch installs to https://github.com/PyCQA/flake8.git (from GitLab)
+- Add new `main` branch definition option for the flake8-version input field.  Both "main" and "master" now result in the installation of flake8 from the latest commit in the main branch of the new GitHub repository (see above)
+- Update npm commands in Makefile update and dev-update targets
+- Execute the GitHub Action in a node16 environment (from node12)
+- Execute eslint lint tests in a node16 environment (from node12)
+- update @actions/core to ^1.9.0
+- update @actions/exec to ^1.1.1
+- update eslint-config-airbnb-base to ^15.0.0
+- update eslint-plugin-import to ^2.26.0
+- update eslint-plugin-promise to ^6.0.0
+- update eslint-plugin-react to ^7.30.0
+- update jest to ^28.1.1
+
 ## v2.0.0
 
 - Remove cPython 3.6 GitHub Actions test runner support (all platforms)
