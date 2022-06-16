@@ -3255,7 +3255,7 @@ async function run() {
       await exec.exec("python -m pip install --upgrade flake8");
     } else if (flake8Version === "master") {
       await exec.exec(
-        "python -m pip install --upgrade git+https://gitlab.com/pycqa/flake8.git"
+        "python -m pip install --upgrade git+https://github.com/PyCQA/flake8.git"
       );
     } else {
       await exec.exec(
