@@ -38,3 +38,4 @@ jobs:
           args: "--quiet"
           path: "tests/test-args.py"
           flake8-version: "main"
+          plugins: "flake8-bugbear==22.1.11 flake8-black"
