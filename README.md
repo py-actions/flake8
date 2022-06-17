@@ -59,6 +59,7 @@ jobs:
           exclude: "src/ignoreme.py"
           max-line-length: "100"
           path: "src"
+          plugins: "flake8-bugbear==22.1.11 flake8-black"
 ```
 
 See the Inputs section below for details on the defaults and optional configuration settings.
@@ -106,6 +107,13 @@ See the inputs below for additional details.
 ### `plugins`
 
 **Optional** Space delimited list of flake8 plugin packages to install with pip prior to flake8 execution.  Default = none.
+
+Use the syntax:
+
+- `[PACKAGE NAME]`: for current PyPI release version across Action runs
+- `[PACKAGE NAME]==[VERSION]`: for a fixed PyPI release version on every Action run
+
+See the ["With custom settings" example](#with-custom-settings) above.
 
 ## Outputs
 
