@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2.0
+
+- Add support for flake8 plugin installation prior to flake8 execution
+- Add new `plugins` input field that accepts a space-delimited list of flake8 plugin packages
+- Remove Windows-specific CI environment pip installation workaround that was required to temporarily address #139 pip bug
+
 ## v2.1.0
 
 - Move remote git repository for flake8 default source branch installs to https://github.com/PyCQA/flake8.git (from GitLab)
