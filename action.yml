@@ -29,6 +29,10 @@ inputs:
     description: "The flake8 version for tests (optional, default='latest')"
     required: false
     default: "latest" # possible values ['latest', 'master', 'main', '[VERSION NUMBER]']
+  plugins:
+    description: "List of flake8 plugins for pip installation prior to flake8 execution"
+    required: false
+    default: "none" # possible values ['[PACKAGE]', '[PACKAGE]==[VERSION NUMBER]']
 
 runs:
   using: "node16"

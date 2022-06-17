@@ -9,6 +9,7 @@ async function run() {
   const maxLineLength = core.getInput("max-line-length");
   const flake8Args = core.getInput("args");
   const flake8Version = core.getInput("flake8-version");
+  const flake8Plugins = core.getInput("plugins");
 
   // ====================
   // Install dependencies
@@ -40,6 +41,11 @@ async function run() {
     // show installed flake8 version that will be used during the tests
     console.log("[*] Installed flake8 package version:");
     await exec.exec("flake8 --version");
+
+    // install plugins if they were requested
+    if (flake8Plugins !== "none") {
+      await exec.exec(`python -m pip install --upgrade ${flake8Plugins}`);
+    }
 
     // prep flake8 command for execution
     let flake8Cmd = "flake8";
