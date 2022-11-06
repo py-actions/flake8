@@ -8,7 +8,7 @@
 
 This GitHub Action installs the Python [flake8 package](https://pypi.org/project/flake8/) in an environment with a Python interpreter and executes flake8 stylistic and logical linting of Python source files.  flake8 installation and execution defaults, and flake8 plugins can be configured with optional Action settings.
 
-The project is tested against the latest GitHub Actions Linux, macOS, and Windows runner environment cPython versions 3.7 - 3.10 interpreters on a nightly basis.
+The project is tested against the latest GitHub Actions Linux, macOS, and Windows runner environment cPython versions 3.8.x - 3.11.x interpreters on a nightly basis.
 
 ## Quick Start
 
@@ -25,11 +25,11 @@ jobs:
     name: Lint
     steps:
       - name: Check out source repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python environment
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
       - name: flake8 Lint
         uses: py-actions/flake8@v2
 ```
@@ -47,11 +47,11 @@ jobs:
     name: Lint
     steps:
       - name: Check out source repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python environment
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
       - name: flake8 Lint
         uses: py-actions/flake8@v2
         with:
