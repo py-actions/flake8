@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.2.1
+
+- add cPython 3.11.x environment support
+- drop cPython 3.7.x environment support (may still function, but will no longer be included in tests)
+- dependency updates
+- update CodeQL scanning configuration
+
 ## v2.2.0
 
 - Add support for flake8 plugin installation prior to flake8 execution
