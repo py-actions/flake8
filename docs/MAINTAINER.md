@@ -9,7 +9,7 @@
 ### Build dist file
 
 ```
-$ npm run package
+$ make dist
 ```
 
 Confirm that this is pushed to the remote as the Action execution is based on `dist/index.js`!
