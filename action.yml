@@ -35,7 +35,7 @@ inputs:
     default: "none" # possible values ['[PACKAGE]', '[PACKAGE]==[VERSION NUMBER]']
 
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"
 
 branding:
