@@ -1,6 +1,6 @@
 # Changelog
 
-# v2.3.0
+## v2.3.0
 
 - update the GitHub Action to use node 20 environment from node 16 environment (addresses GitHub Actions node 16 deprecation warnings)
 - add cPython 3.12.x interpreter testing support
